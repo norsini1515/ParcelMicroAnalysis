@@ -1,0 +1,30 @@
+notes:
+  - year: 2013
+    folder: Baco2013
+    geo_scope: Baltimore County
+    issue: "Appears to be county data, not city"
+
+  - year: 2014
+    folder: null
+    geo_scope: missing
+    issue: "No data file found for this year"
+
+  - year: 2016
+    folder: null
+    geo_scope: missing
+    issue: "No data file found for this year"
+
+  - year: 2018
+    folder: null
+    geo_scope: missing
+    issue: "No data file found for this year"
+
+  - year: 2019
+    folder: null
+    geo_scope: missing
+    issue: "No data file found for this year"
+
+  - year: 2020
+    folder: null
+    geo_scope: missing
+    issue: "No data file found for this year"

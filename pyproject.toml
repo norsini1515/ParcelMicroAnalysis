@@ -1,0 +1,38 @@
+[project]
+name = "parceltrack"
+version = "0.1.0"
+description = "A tool for tracking and analyzing parcel-level spatial changes in Baltimore."
+authors = [
+    { name = "Nick Orsini", email = "norsini1515@gmail.com" }
+]
+readme = "README.md"
+requires-python = ">=3.9"
+
+dependencies = [
+    "numpy",
+    "pandas",
+    "geopandas",
+    "matplotlib",
+    "shapely",
+    "fiona",
+    "pillow",
+    "opencv-python",
+    "scikit-learn",
+    "seaborn",
+]
+
+[project.optional-dependencies]
+dev = [
+    "black",
+    "isort",
+    "pytest",
+    "jupyter",
+    "ipykernel"
+]
+
+[tool.setuptools]
+packages = ["parceltrack"]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
