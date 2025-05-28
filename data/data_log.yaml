@@ -28,3 +28,22 @@ notes:
     folder: null
     geo_scope: missing
     issue: "No data file found for this year"
+
+patterns:
+  pattern_2021_2024:
+    years: [2021, 2022, 2023, 2024]
+    files: ["BACIMDPV.shp", "BACIPOLY.shp"]
+
+  pattern_2000_2017:
+    years: [2000, ..., 2012, 2015, 2017]
+    structure: "standard folder with one main .shp"
+
+  pattern_1996_1998:
+    years: [1996, 1997, 1998]
+    structure: "Same as 1999–2000; NAD83 meters; DATADOCS with .TXT metadata and joinable .DBF tables"
+    note: "similar to 2000–2017 but folder name format differs"
+
+  pattern_1999:
+    years: [1999]
+    structure: "ArcView format (NAD83 meters); multiple DBFs; metadata-rich"
+    note: "Matches 2000–2017 structurally, but folder name differs. Rich documentation in DATADOCS folder with parcel data joinable by ACCTID."
