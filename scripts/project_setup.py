@@ -15,4 +15,4 @@ def extract_all_zips(zip_dir: Path, output_dir: Path):
 if __name__ == '__main__':
     print('Project structure initialized.')
     project_paths = ProjectPaths()
-    extract_all_zips(project_paths.raw)
+    extract_all_zips(project_paths.raw, project_paths.raw)
