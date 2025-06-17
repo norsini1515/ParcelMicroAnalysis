@@ -22,7 +22,7 @@ def filter_poly_files(shapefile_metadata_df):
 def plot_timeseries_choropleth(
     gdf_dict: dict,
     value_col: str,
-    hover_cols: list = None,
+    hover_cols: list = ["ACCTID"],
     title: str = "Parcel Value Over Time",
     color_scale: str = "Viridis"
 ) -> go.Figure:
@@ -43,19 +43,23 @@ def plot_timeseries_choropleth(
     years = sorted(gdf_dict.keys())
     buttons = []
 
+    cols = hover_cols + [value_col, 'geometry', 'POLYID']
     for i, (year, gdf) in enumerate(gdf_dict.items()):
-
+        print(year)
+        
+        used_gdf = gdf[cols].reset_index(drop=True)
+        
         if hover_cols:
-            gdf["hovertext"] = gdf[hover_cols].astype(str).agg("<br>".join, axis=1)
+            gdf["hovertext"] = used_gdf[hover_cols].astype(str).agg("<br>".join, axis=1)
         else:
             gdf["hovertext"] = f"Year: {year}"
 
-        geojson = json.loads(gdf.to_json())
+        geojson = json.loads(used_gdf.to_json())
 
         visible = [False] * len(years)
         visible[i] = True
 
-        layers.append(go.choroplethmap(
+        layers.append(go.Choroplethmap(
             geojson=geojson,
             locations=gdf.index,
             z=gdf[value_col],
