@@ -102,20 +102,25 @@ if __name__ == '__main__':
         parcel_files_dict = load_files_from_metdata(poly_files, paths.raw)
         save_geojson_per_year(parcel_files_dict, paths.processed, max_size="25MB")
     
-    parcels_2021 = load_processed_year_files(directory=paths.processed / 'partitioned_files', year=2021)
-    parcel_columns = parcels_2021.columns.tolist()
+    for year in range(2021, 2025):
+        if(year in [2022, 2023, 2024]):
+            continue
+        parcels_year = load_processed_year_files(directory=paths.processed / 'partitioned_files', year=year)
+        save_geojson_per_year({year:parcels_year}, paths.processed)
     
-    columns = ['ACCTID', 'ADDRESS', 'BLOCK', 'ZONING', 'YEARBLT', 'SQFTSTRC', 'NFMLNDVL', 'NFMIMPVL', 'NFMTTLVL', 'geometry']
-    parcels_2021_subset = parcels_2021[columns]
-    zones = parcels_2021_subset['ZONING'].value_counts(dropna=False)
-    
-    parcels_2021_subset.plot(
-    column="NFMTTLVL",  # or any other column
-    cmap="viridis",
-    legend=True,
-    figsize=(10, 10),
-    edgecolor="black",
-    linewidth=0.2
-    )
-    plt.title("Total Parcel Value (2021)")
-    plt.show()
+    if False:
+        parcel_columns = parcels_2021.columns.tolist()
+        columns = ['ACCTID', 'ADDRESS', 'BLOCK', 'ZONING', 'YEARBLT', 'SQFTSTRC', 'NFMLNDVL', 'NFMIMPVL', 'NFMTTLVL', 'geometry']
+        parcels_2021_subset = parcels_2021[columns]
+        zones = parcels_2021_subset['ZONING'].value_counts(dropna=False)
+        
+        parcels_2021_subset.plot(
+        column="NFMTTLVL",  # or any other column
+        cmap="viridis",
+        legend=True,
+        figsize=(10, 10),
+        edgecolor="black",
+        linewidth=0.2
+        )
+        plt.title("Total Parcel Value (2021)")
+        plt.show()
